@@ -7,8 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Configuration
-//@Import(MybatisConfig.class)//主动注入
-//@ComponentScan("com.pipichao.config")//被动的扫描配置类
+//@Import(MyBatisConfig.class)//主动注入
+@ComponentScan("com.pipichao.config")//被动的扫描配置类
 public class SpringConfig {
     /**
      *

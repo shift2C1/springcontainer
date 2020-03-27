@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置数据源。配置数据库连接参数-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!--jdbc驱动包-->
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>
+        <!--数据库地址-->
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/testdb?serverTimezone=UTC"></property>
+        <!--数据库用户名-->
+        <property name="user" value="root"></property>
+        <!--数据库密码-->
+        <property name="password" value="2437262431"></property>
+
+        <!--配置数据源连接个数-->
+        <property name="initialPoolSize" value="5"></property>
+        <property name="maxPoolSize" value="10"></property>
+    </bean>
+    <!--配置sqlSessionFactoryBean-->
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--配置数据源，关联到上面配置的数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--配置mapper的路径-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+    </bean>
+    <!--配置mapper接口地址-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+
+        <property name="basePackage" value="com.test.dao"></property>
+    </bean>
+</beans>
